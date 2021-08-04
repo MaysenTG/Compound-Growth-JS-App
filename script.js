@@ -44,7 +44,7 @@ const options = {
             labels: {
                 // This more specific font property overrides the global property
                 font: {
-                    size: 40
+                    size: 30
                 }
             }
         }     
@@ -130,18 +130,22 @@ jQuery('#exponentialForm').submit(function(e) {
     // Clear the form
     $("#exponentialForm").trigger("reset");
     
-    $(".capital").text("$"+capital);
+    $(".capital").text("$"+numberWithCommas(capital));
     $(".numyears").text(numyears);
     $(".interest").text(interest*100+"%");
     if(contribution > 0) {
-        $(".contribution").text("$"+contribution);
+        $(".contribution").text("$"+numberWithCommas(contribution));
     } else {
         $(".contribution").text("No contribution");
     }
-    $(".final").text("$"+exponentialValues.slice(-1));
+    $(".final").text("$"+numberWithCommas(exponentialValues.slice(-1)));
     };
 })(jQuery);
 
+// Return number with comma's in place
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 
 
 // Update chart with info

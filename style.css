@@ -7,6 +7,7 @@ body {
   background-color: rgb(184, 178, 178);
   justify-content: space-between;
   align-items: center;
+  font-family: "Consolas", sans-serif;
 }
 
 .forminputs {
@@ -80,14 +81,12 @@ input[type="submit"]:hover {
 }
 
 .exponentialGrowthChart {
-  width: 60% !important;
+  width: 60%;
   background-color: white;
   opacity: 0.4;
-  min-width: 600px;
 }
 
 #summary {
-  float: center;
   padding: 1rem;
   display: inline-flex;
   justify-content: space-between;
@@ -103,4 +102,21 @@ input[type="submit"]:hover {
 #summary div h2 {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
+}
+
+#summary div {
+  margin: 0 auto;
+}
+
+@media only screen and (max-width: 715px) {
+  #exponentialCalcApp {
+    width: 40ch;
+  }
+  #exponentialGrowthChart {
+    width: 40ch !important;
+  }
+  .exponentialGrowthChart {
+    width: 40ch !important;
+    height: 75% !important;
+  }
 }
