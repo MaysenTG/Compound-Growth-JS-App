@@ -118,7 +118,7 @@ jQuery('#exponentialForm').submit(function(e) {
         exponentialValues[0] = growthValue;
 
         for (let i = 1; i < numyears; i++) {
-            growthValue *= (1 + interest) + contribution;
+            growthValue *= ((1 + interest) + contribution);
             exponentialValues.push(parseFloat(growthValue).toFixed(1));
         }
     };
