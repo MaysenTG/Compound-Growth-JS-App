@@ -69,20 +69,34 @@ var myChart = new Chart(ctx, {
     options: options,
 });
 
-jQuery("#submit-btn").on("click", function (e) {
+//jQuery("#submit-btn").on("click", function (e) {
+jQuery('#exponentialForm').submit(function(e) {
     e.preventDefault();
+    // Reset values so charts don't add together
     capital = 0;
     numyears = 0;
     interest = 0;
     contribution = 0;
     exponentialValues = [];
     
+    // Grab values from form
     capital = $("#initialcapital").val();
     numyears = $("#numyears").val();
     interest = $("#interest").val();
     interest /= 100;
     contribution = $('#contribution').val();
+    
+    $("#summary").text(`Initial Capital: $${capital}----Number of years to compound: ${numyears}----Interest Rate: ${interest*100}%----Annual Contribution: $${contribution}`);
+    
+    // Enable clear button
+    $("#clear-btn").css('cursor', 'pointer', 'opacity', '1');
+    $("#clear-btn").css('opacity', '1');
+    
+    
+    // Clear the form
+    $("#exponentialForm").trigger("reset");
 
+    // Call helper functions below to organize data
     $("div").getLabels();
     $("div").calculateGrowth();
     $("div").createUserChart();
@@ -90,12 +104,14 @@ jQuery("#submit-btn").on("click", function (e) {
 });
 
 
+// Turn the number of years into an array of 1 to the number of years
 (function ($) {
     $.fn.getLabels = function () {
         labels = Array.from({ length: numyears }, (v, k) => k + 1);
     };
 })(jQuery);
 
+// Calculate the compound growth and add it to an array at each iteration (or year)
 (function ($) {
     $.fn.calculateGrowth = function () {
         var growthValue = capital;
@@ -110,12 +126,13 @@ jQuery("#submit-btn").on("click", function (e) {
 
 
 
-
+// Update chart with info
 (function ($) {
     $.fn.createUserChart = function () {
         myChart.data.labels = labels;
         myChart.data.datasets[0].data = exponentialValues;
         
+        // Set lower and upper bounds of y axis
         myChart.options.scales.y.min = Math.round(capital);
         myChart.options.scales.y.max = Math.round(exponentialValues[exponentialValues.length-1]);
         
@@ -123,3 +140,19 @@ jQuery("#submit-btn").on("click", function (e) {
         myChart.update();
     };
 })(jQuery);
+
+
+// Reset chart
+$(document).ready(function() {
+    $("#clear-btn").click(function(){
+        myChart.data.labels = [];
+        myChart.data.datasets[0].data = [];
+        
+        myChart.options.scales.y.min = 1;
+        myChart.options.scales.y.max = 10;
+        
+        myChart.update();
+        
+        $('#summary').text("");
+    }); 
+});

@@ -39,7 +39,7 @@ textarea {
   min-height: 4rem;
 }
 
-#submit-btn {
+.form-btn {
   background-color: #90d1ff;
   border: 2px solid #304e7e;
   color: black;
@@ -47,6 +47,16 @@ textarea {
   cursor: pointer;
   font-size: 1rem;
   margin: auto;
+}
+
+#clear-btn {
+  float: right;
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+#clear-btn:hover {
+  background-color: #77c7ff;
 }
 
 /* When moving the mouse over the submit button, add a darker green color */
@@ -72,5 +82,9 @@ input[type="submit"]:hover {
 .exponentialGrowthChart {
   width: 60% !important;
   background-color: white;
-  opacity: 0.2;
+  opacity: 0.3;
+}
+
+#summary {
+  margin-left: 2rem;
 }
