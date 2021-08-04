@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <title>Exponential Calculator</title>
+    <link href="style.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="node_modules/chart.js/dist/chart.js"></script>
+  </head>
+
+  <body>
+    <div class="box" id="exponentialCalcApp">
+      <form id="exponentialForm" method="POST">
+        <label for="initialcapital">Initial Balance</label><br />
+        <input
+          type="number"
+          id="initialcapital"
+          name="initialcapital"
+          placeholder="Your initial capital.."
+          required
+          min="1"
+        />
+        <br />
+
+        <label for="numyears">Years of compounding</label><br />
+        <input
+          type="number"
+          id="numyears"
+          name="numyears"
+          placeholder="Number of years"
+          required
+          min="1"
+        /><br />
+
+        <label for="interest">Interest Rate</label><br />
+        <input
+        type="number"
+          id="interest"
+          name="interest"
+          placeholder="Interest rate"
+          required
+          min="0"
+        ></input
+        ><br />
+        
+        <label for="contribution">Annual Contribution</label><br />
+        <input
+        type="number"
+          id="contribution"
+          name="contribution"
+          placeholder="Annual Contribution"
+          min="0"
+        ></input
+        ><br />
+
+        <button id="submit-btn" type="submit" value="Submit">Submit</button>
+      </form>
+    </div>
+    
+    <canvas class="box" id="exponentialGrowthChart"></canvas>
+    <script src="script.js"></script>
+  </body>
+</html>

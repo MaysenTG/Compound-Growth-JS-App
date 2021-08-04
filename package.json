@@ -1,0 +1,17 @@
+{
+  "name": "exponential-growth-calculator",
+  "version": "1.0.0",
+  "description": "JS app to calculate and graph exponential growth",
+  "main": "script.js",
+  "dependencies": {
+    "chart.js": "^3.5.0",
+    "require": "^2.4.20",
+    "util": "^0.12.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Maysen Greenwood",
+  "license": "ISC"
+}
