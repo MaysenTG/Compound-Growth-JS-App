@@ -6,6 +6,7 @@ var interest;
 var contribution;
 var exponentialValues = [];
 var config;
+var graphLabel;
 var ctx = $('#exponentialGrowthChart').get(0).getContext('2d');
 
 
@@ -42,7 +43,7 @@ var myChart = new Chart(ctx, {
         datasets: [{
             label: 'My First Dataset',
             data: [],
-            fill: false,
+            //fill: false,
             borderColor: 'rgb(75, 192, 192)',
             tension: 0.1
         }]

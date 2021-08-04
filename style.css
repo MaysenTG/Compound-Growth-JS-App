@@ -21,12 +21,12 @@ textarea {
   margin: 0 auto;
   width: 95%;
   padding: 12px;
-  border: 1px solid black;
-  border-radius: 4px;
+  border: 1px solid #304e7e;
   margin-top: 6px;
   margin-bottom: 3rem;
   resize: vertical;
   font-size: 2rem;
+  color: #304e7e;
 }
 
 textarea {
@@ -37,23 +37,21 @@ textarea {
 
 
 #submit-btn {
-  background-color: #5dbcff;
-  border: 2px solid black;
+  background-color: #90d1ff;
+  border: 2px solid #304e7e;
   color: black;
   padding: 12px 20px;
-  border-radius: 4px;
   cursor: pointer;
   font-size: 1rem;
 }
 
 /* When moving the mouse over the submit button, add a darker green color */
 input[type="submit"]:hover {
-  background-color: #55a8e3;
+  background-color: #77c7ff;
 }
 
 /* Add a background color and some padding around the form */
 #exponentialCalcApp {
-  border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;
 }
