@@ -4,7 +4,7 @@ var capital;
 var numyears;
 var interest;
 var contribution;
-var exponentialValues = [];
+var compoundValues = [];
 var config;
 var graphLabel;
 window.chartColors = {
@@ -17,7 +17,7 @@ window.chartColors = {
     grey: 'rgb(231,233,237)'
   };
   
-var ctx = $('#exponentialGrowthChart').get(0).getContext('2d', {alpha: false});
+var ctx = $('#compoundGrowthChart').get(0).getContext('2d', {alpha: false});
 
 
 // Variables for chart
@@ -70,14 +70,14 @@ var myChart = new Chart(ctx, {
 });
 
 //jQuery("#submit-btn").on("click", function (e) {
-jQuery('#exponentialForm').submit(function(e) {
+jQuery('#compoundForm').submit(function(e) {
     e.preventDefault();
     // Reset values so charts don't add together
     capital = 0;
     numyears = 0;
     interest = 0;
     contribution = 0;
-    exponentialValues = [];
+    compoundValues = [];
     
     // Grab values from form
     capital = $("#initialcapital").val();
@@ -107,11 +107,11 @@ jQuery('#exponentialForm').submit(function(e) {
 (function ($) {
     $.fn.calculateGrowth = function () {
         var growthValue = capital;
-        exponentialValues[0] = growthValue;
+        compoundValues[0] = growthValue;
 
         for (let i = 1; i < numyears; i++) {
             growthValue *= ((1 + interest) + contribution);
-            exponentialValues.push(parseFloat(growthValue).toFixed(2));
+            compoundValues.push(parseFloat(growthValue).toFixed(2));
         }
     };
 })(jQuery);
@@ -125,11 +125,11 @@ jQuery('#exponentialForm').submit(function(e) {
     $("#clear-btn").css('cursor', 'pointer');
     $("#clear-btn").css('opacity', '1');
     
-    $(".exponentialGrowthChart").css('opacity', '1');
+    $(".compoundGrowthChart").css('opacity', '1');
     
     
     // Clear the form
-    $("#exponentialForm").trigger("reset");
+    $("#compoundForm").trigger("reset");
     
     $(".capital").text("$"+numberWithCommas(capital));
     $(".numyears").text(numyears);
@@ -139,7 +139,7 @@ jQuery('#exponentialForm').submit(function(e) {
     } else {
         $(".contribution").text("No contribution");
     }
-    $(".final").text("$"+numberWithCommas(exponentialValues.slice(-1)));
+    $(".final").text("$"+numberWithCommas(compoundValues.slice(-1)));
     };
 })(jQuery);
 
@@ -153,11 +153,11 @@ function numberWithCommas(x) {
 (function ($) {
     $.fn.createUserChart = function () {
         myChart.data.labels = labels;
-        myChart.data.datasets[0].data = exponentialValues;
+        myChart.data.datasets[0].data = compoundValues;
         
         // Set lower and upper bounds of y axis
         myChart.options.scales.y.min = Math.round(capital);
-        myChart.options.scales.y.max = Math.round(exponentialValues[exponentialValues.length-1]);
+        myChart.options.scales.y.max = Math.round(compoundValues[compoundValues.length-1]);
         
         
         myChart.update();
@@ -177,7 +177,7 @@ $(document).ready(function() {
         myChart.update();
         
         $('.subtext').empty();
-        $(".exponentialGrowthChart").css('opacity', '0.4');
+        $(".compoundGrowthChart").css('opacity', '0.4');
         $("#clear-btn").css('opacity', '0.3');
     }); 
 });

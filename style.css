@@ -66,10 +66,12 @@ input[type="submit"]:hover {
 }
 
 /* Add a background color and some padding around the form */
-#exponentialCalcApp {
+#compoundCalcApp {
   background-color: #f2f2f2;
   padding: 20px;
   width: 70ch;
+  height: 75ch !important;
+  margin-bottom: 2rem;
 }
 
 .box {
@@ -80,7 +82,7 @@ input[type="submit"]:hover {
   margin: 0 auto;
 }
 
-.exponentialGrowthChart {
+.compoundGrowthChart {
   width: 60%;
   background-color: white;
   opacity: 0.4;
@@ -109,13 +111,13 @@ input[type="submit"]:hover {
 }
 
 @media only screen and (max-width: 715px) {
-  #exponentialCalcApp {
+  #compoundCalcApp {
     width: 40ch;
   }
-  #exponentialGrowthChart {
+  #compoundGrowthChart {
     width: 40ch !important;
   }
-  .exponentialGrowthChart {
+  .compoundGrowthChart {
     width: 40ch !important;
     height: 75% !important;
   }
