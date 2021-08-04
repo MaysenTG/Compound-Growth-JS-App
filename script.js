@@ -86,19 +86,12 @@ jQuery('#exponentialForm').submit(function(e) {
     interest /= 100;
     contribution = $('#contribution').val();
     
-    $("#summary").text(`Initial Capital: $${capital}----Number of years to compound: ${numyears}----Interest Rate: ${interest*100}%----Annual Contribution: $${contribution}`);
-    
-    // Enable clear button
-    $("#clear-btn").css('cursor', 'pointer', 'opacity', '1');
-    $("#clear-btn").css('opacity', '1');
-    
-    
-    // Clear the form
-    $("#exponentialForm").trigger("reset");
-
     // Call helper functions below to organize data
     $("div").getLabels();
     $("div").calculateGrowth();
+    
+    $("div").formatStyles();
+    
     $("div").createUserChart();
     $(".exponentialGrowthChart").css('opacity', '1');
 });
@@ -119,8 +112,33 @@ jQuery('#exponentialForm').submit(function(e) {
 
         for (let i = 1; i < numyears; i++) {
             growthValue *= ((1 + interest) + contribution);
-            exponentialValues.push(parseFloat(growthValue).toFixed(1));
+            exponentialValues.push(parseFloat(growthValue).toFixed(2));
         }
+    };
+})(jQuery);
+
+
+// Format the html/css
+(function ($) {
+    $.fn.formatStyles = function () {
+    
+    // Enable clear button
+    $("#clear-btn").css('cursor', 'pointer', 'opacity', '1');
+    $("#clear-btn").css('opacity', '1');
+    
+    
+    // Clear the form
+    $("#exponentialForm").trigger("reset");
+    
+    $(".capital").text("$"+capital);
+    $(".numyears").text(numyears);
+    $(".interest").text(interest*100+"%");
+    if(contribution > 0) {
+        $(".contribution").text("$"+contribution);
+    } else {
+        $(".contribution").text("No contribution");
+    }
+    $(".final").text("$"+exponentialValues.slice(-1));
     };
 })(jQuery);
 
