@@ -30,6 +30,7 @@
           placeholder="Number of years"
           required
           min="1"
+          max="500"
         /><br />
 
         <label for="interest">Interest Rate</label><br />
@@ -39,7 +40,8 @@
           name="interest"
           placeholder="Interest rate"
           required
-          min="0"
+          min=0
+          max=100
         ></input
         ><br />
         
@@ -56,8 +58,10 @@
         <input id="submit-btn" type="submit" value="Submit"></input>
       </form>
     </div>
-    
-    <canvas class="box" id="exponentialGrowthChart"></canvas>
+    <div class="box exponentialGrowthChart">
+      <canvas id="exponentialGrowthChart"></canvas>
+    </div>
+    <!--<canvas class="box exponentialGrowthChart" id="exponentialGrowthChart"></canvas>-->
     <script src="script.js"></script>
   </body>
 </html>
