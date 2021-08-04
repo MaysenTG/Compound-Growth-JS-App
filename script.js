@@ -1,70 +1,68 @@
+
+
 var capital;
 var numyears;
 var interest;
 var contribution;
 var exponentialValues = [];
+var config;
 var ctx = $('#exponentialGrowthChart').get(0).getContext('2d');
+
 
 // Variables for chart
 var labels = [];
 const options = {
     scales: {
-        y: {
+        ticks: {
             beginAtZero: true,
         },
 
-        plugins: {
-            legend: {
-                labels: {
-                    // This more specific font property overrides the global property
-                    font: {
-                        size: 14
-                    }
+        myScale: {
+            position: "left",
+        }
+    },
+
+    plugins: {
+        legend: {
+            labels: {
+                // This more specific font property overrides the global property
+                font: {
+                    size: 40
                 }
             }
-        },
-        maintainAspectRatio: true,
-        responsive: true,
-    }
+        }
+    },
+    responsive: true,
 }
 
-// Set chart
 var myChart = new Chart(ctx, {
-    type: 'line',
+    type: "line",
     data: {
-        labels: labels,
+        labels: [],
         datasets: [{
             label: 'My First Dataset',
-            data: [65, 59, 80, 81, 56, 55, 40],
+            data: [],
             fill: false,
             borderColor: 'rgb(75, 192, 192)',
             tension: 0.1
         }]
     },
+    options: options,
 });
 
+jQuery("#submit-btn").on("click", function (e) {
+    e.preventDefault();
+    capital = $("#initialcapital").val();
+    numyears = $("#numyears").val();
+    interest = $("#interest").val();
+    interest /= 100;
+    contribution = $('#contribution').val();
 
-
-$(document).ready(function () {
-    // Get value on button click and show alert
-    $("#exponentialForm").submit(function () {
-        capital = $("#initialcapital").val();
-        numyears = $("#numyears").val();
-        interest = $("#interest").val();
-        interest /= 100;
-        contribution = $('#contribution').val();
-
-        $("#exponentialForm").getLabels();
-        $("#exponentialForm").calculateGrowth();
-        $("#exponentialForm").showData();
-    });
+    $("div").getLabels();
+    $("div").calculateGrowth();
+    $("div").createUserChart();
+    $('#finalResult').text(exponentialValues[exponentialValues.length - 1]);
 });
-
-(function ($) {
-    $.fn.showData = function () {
-        myChart.update();
-    };
-})(jQuery);
 
 
 (function ($) {
@@ -82,7 +80,6 @@ $(document).ready(function () {
             growthValue *= (1 + interest) + contribution;
             exponentialValues.push(parseFloat(growthValue).toFixed(1));
         }
-        alert(exponentialValues);
     };
 })(jQuery);
 
@@ -91,6 +88,9 @@ $(document).ready(function () {
 
 (function ($) {
     $.fn.createUserChart = function () {
+        myChart.data.labels = labels;
+        myChart.data.datasets[0].data = exponentialValues;
+
         myChart.update();
     };
 })(jQuery);
