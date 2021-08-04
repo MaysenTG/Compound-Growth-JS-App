@@ -93,7 +93,6 @@ jQuery('#exponentialForm').submit(function(e) {
     $("div").formatStyles();
     
     $("div").createUserChart();
-    $(".exponentialGrowthChart").css('opacity', '1');
 });
 
 
@@ -123,8 +122,10 @@ jQuery('#exponentialForm').submit(function(e) {
     $.fn.formatStyles = function () {
     
     // Enable clear button
-    $("#clear-btn").css('cursor', 'pointer', 'opacity', '1');
+    $("#clear-btn").css('cursor', 'pointer');
     $("#clear-btn").css('opacity', '1');
+    
+    $(".exponentialGrowthChart").css('opacity', '1');
     
     
     // Clear the form
@@ -175,6 +176,8 @@ $(document).ready(function() {
         
         myChart.update();
         
-        $('#summary').text("");
+        $('.subtext').empty();
+        $(".exponentialGrowthChart").css('opacity', '0.4');
+        $("#clear-btn").css('opacity', '0.3');
     }); 
 });
